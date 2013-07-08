@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>System - Varnish User Agent</name>
+	<author>Dimitris Grammatikogiannis</author>
+	<creationDate>July 2013</creationDate>
+	<copyright>Copyright (C) 2013 Dimitris Grammatikogiannis. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>d_gramm3@hotmail.com</authorEmail>
+	<authorUrl>www.dgrammatiko.name</authorUrl>
+	<version>1.0.0</version>
+	<description><![CDATA[ 
+		<h1 style="margin-left:0;">User Agent From Varnish Detector Or from PHP</h1>
+		<p style="font-family:arial,helvetica,sans-serif; font-size: 12px;">This plugin gets the user agent from varnish and sets a session variable. The PHP detection part is based on Rene Kreijveld User Agent Detector {www.renekreijveld.nl}. To Use the Varnish detection please refer to https://github.com/varnish/varnish-devicedetect<br>
+		Session variable that is set: <strong>ualayout</strong>.<br>
+		Possible values: <strong>desktop</strong>, <strong>tablet</strong>, <strong>mobile</strong>, <strong>bot</strong>.<br><br>
+		Example code to check the value of ualayout:</p>
+		<pre style="font-size:13px;">&lt;?php
+				$session = JFactory::getSession();
+				$ualayout = $session-&gt;get('ualayout');
+				
+				if($ualayout == "desktop") //some code
+				if($ualayout == "tablet") //some code
+				if($ualayout == "mobile") //some code  ?&gt;
+		</pre>
+	]]></description>
+	<files>
+		<filename plugin="varnishua">varnishua.php</filename>
+		<folder>lib</folder>
+	</files>
+		<languages>
+		<language tag="en-GB">en-GB.plg_system_varnishua.sys.ini</language>
+	</languages>
+<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="varnish_setup" type="radio"
+					description="PLG_SYSTEM_VARNISHUA_FIELD_VARNISH_SETUP_DESC"
+					label="PLG_SYSTEM_VARNISHUA_FIELD_VARNISH_SETUP_LABEL"
+					default="0"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+	
+</extension>
