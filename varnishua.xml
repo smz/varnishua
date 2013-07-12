@@ -10,7 +10,7 @@
 	<version>1.0.0</version>
 	<description><![CDATA[ 
 		<h1 style="margin-left:0;">User Agent From Varnish Detector Or from PHP</h1>
-		<p style="font-family:arial,helvetica,sans-serif; font-size: 12px;">This plugin gets the user agent from varnish and sets a session variable. The PHP detection part is based on Rene Kreijveld User Agent Detector {www.renekreijveld.nl}. To Use the Varnish detection please refer to https://github.com/varnish/varnish-devicedetect<br>
+		<p style="font-family:arial,helvetica,sans-serif; font-size: 12px;">This plugin gets the user agent from varnish and sets a session variable.<br/> The PHP detection part is based on Rene Kreijveld User Agent Detector {www.renekreijveld.nl}. <br/>To Use the Varnish detection read the instructions below. In Root/plugins/system/varnishua/lib there are the two vcl files needed for varnish setup. <br>
 		Session variable that is set: <strong>ualayout</strong>.<br>
 		Possible values: <strong>desktop</strong>, <strong>tablet</strong>, <strong>mobile</strong>, <strong>bot</strong>.<br><br>
 		Example code to check the value of ualayout:</p>
