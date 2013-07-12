@@ -41,9 +41,10 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="redirect_link" class="" type="text" default="http://browsehappy.com"
+					description="PLG_SYSTEM_VARNISHUA_REDIRECT_LINK_DESC"
+					label="PLG_SYSTEM_VARNISHUA_FIELD_REDIRECT_LINK_LABEL" />
 			</fieldset>
 		</fields>
 	</config>
-
-	
 </extension>
