@@ -30,36 +30,38 @@ jimport( 'joomla.plugin.plugin' );
  */
 class plgSystemVarnishua extends JPlugin
 {
-			protected $userAgent = null;
-			protected $httpHeaders;
 			
 	public function onAfterInitialise()
 	{
-		switch (true) {
-		case ($this->params->get('varnish_setup', 0)) :
-			
+		if (!$this->params->get('varnish_setup')) {
+//		echo "php staff ok";			
 		include_once(dirname(__FILE__).'/lib/Mobile_Detect.php');
-
 		$detect = new Mobile_Detect();
 		$layout = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'mobile') : 'desktop');
 		if (($detect->is('Bot')) || ($detect->is('MobileBot'))) $layout = 'bot';
-
-		// store user agent layout in session variable.
 		$session = JFactory::getSession();
 		$session->set('ualayout', $layout);
-		break;
+		}
 		
-		case ($this->params->get('varnish_setup', 1)) :
+		else {
+//		echo "varnish staff ok";				
+		$user = JFactory::getUser();
+		if (!$user->guest) {
+			JResponse::setHeader('X-Logged-In', 'True', true);
+			} else {
+			JResponse::setHeader('X-Logged-In', 'False', true);	
+		}			
 		$layout = $_SERVER['HTTP_X_UA_DEVICE'];
 		$session = JFactory::getSession();
+	
 		if ($layout == 'pc') { $session->set('ualayout', 'desktop'); }
 		if ($layout == 'bot') { $session->set('ualayout', 'bot'); }
 		if (($layout == 'mobile-iphone') || ($layout == 'mobile-android') || ($layout == 'mobile-firefoxos') || ($layout == 'mobile-smartphone') || ($layout == 'mobile-generic')) { $session->set('ualayout', 'mobile'); }
 		if (($layout == 'tablet-ipad') || ($layout == 'tablet-android')) { $session->set('ualayout', 'tablet'); }
-
-
-//		echo $session->get('ualayout');
-		break;		
+		if ($layout == 'bad') { 
+			header("Location: http://browsehappy.com");
+					die();
+				}			
 		}
 	}
 }
