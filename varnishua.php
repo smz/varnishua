@@ -44,7 +44,8 @@ class plgSystemVarnishua extends JPlugin
 		}
 		
 		else {
-//		echo "varnish staff ok";				
+//		echo "varnish staff ok";
+		$badbrowser = $this->params->get('redirect_link');				
 		$user = JFactory::getUser();
 		if (!$user->guest) {
 			JResponse::setHeader('X-Logged-In', 'True', true);
@@ -59,7 +60,7 @@ class plgSystemVarnishua extends JPlugin
 		if (($layout == 'mobile-iphone') || ($layout == 'mobile-android') || ($layout == 'mobile-firefoxos') || ($layout == 'mobile-smartphone') || ($layout == 'mobile-generic')) { $session->set('ualayout', 'mobile'); }
 		if (($layout == 'tablet-ipad') || ($layout == 'tablet-android')) { $session->set('ualayout', 'tablet'); }
 		if ($layout == 'bad') { 
-			header("Location: http://browsehappy.com");
+			header('Location: '.$badbrowser);
 					die();
 				}			
 		}
